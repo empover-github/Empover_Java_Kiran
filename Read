@@ -1,0 +1,47 @@
+Technology Stack
+---------------------------------------------
+java 8,
+Eclipse IDE,
+Tomcat 8.0
+Java SE,
+jsp,
+ServletContainer,
+jackson
+
+
+Operations - code - service methods
+---------------------------------------------
+Create - c - createOrder(String jsonRequestData);
+	A "Create Order" request for a number of bricks is submitted
+    Then An Order reference is returned
+	And The Order reference is unique to the submission
+
+Get - g - getOrder(String jsonRequestData);
+	A "Get Order" request is submitted with a valid Order reference
+    Then The order details are returned
+	And The order details contains the Order reference and the number of bricks ordered
+    When A "Get Order" request is submitted with an invalid Order reference
+    Then No order details are returned
+
+GetAll - a - getAllOrder();
+	A "Get All Orders" request is submitted
+    Then All the orders details are returned
+	And The order details contains the Order reference and the number of bricks ordered
+
+Update - u - updateOrder(String jsonRequestData);
+	An "Update Order" request for an existing order reference and a number of bricks is submitted
+    Then An Order reference is returned
+	And The Order reference is unique to the submission,
+	An order exists And That order has been dispatched
+    When A Update Order request is submitted for a valid Order reference
+    Then a 400 bad request response is returned
+
+
+Fulfill - f - dispatchOrder(String jsonRequestData);
+	A "Fulfil Order" request is submitted for a valid Order reference
+    Then The Order is marked as dispatched
+    Given An order exists
+    When A Fulfil Order request is submitted for a invalid Order reference
+    Then A 400 bad request response is returned
+
+Exit - e - exit from all operations
