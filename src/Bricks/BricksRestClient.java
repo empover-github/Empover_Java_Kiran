@@ -24,6 +24,11 @@ public class BricksRestClient {
 		}
 	}
 	
+	public static String initializingMainMethod() {
+		main(null);
+		return "";
+	}
+	
 	/*
 	 * Method which hits the rest service based on selection option..
 	 */
