@@ -42,10 +42,8 @@ public class BricksRestClient {
 			if("c".equalsIgnoreCase(order)) {
 			  System.out.println("Please Enter the Order Quantity...");
 			  qty = scanner.nextLine();
-			  if(qty == "" ||!NumberUtils.isNumeric(qty)) {
+			  if(!orderQtyValidation(qty)) {
 				  System.out.println("Please Enter valid Order Quantity...");  
-			  }else if() {
-				  System.out.println("Please Enter valid Order Quantity...");    
 			  }else {
 				  resp = client.target(webServiceURI+"/"+order+"/"+qty).request("text/plain").get();
 				  System.out.println("Order taken sucessfully, Your order ref no is : "+ resp.readEntity(String.class) );  
@@ -86,4 +84,16 @@ public class BricksRestClient {
 		System.out.println(ex.getMessage());
 	}
   }
+	/*
+	 * Method which validates the qty entered in number
+	 */
+	public static boolean orderQtyValidation(String orderQty) {
+		try {
+			Integer.parseInt(orderQty);
+			return true;
+		}catch(NumberFormatException ex) {
+			return false;
+		}
+		
+	}
 }
